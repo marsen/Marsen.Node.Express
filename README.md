@@ -73,6 +73,12 @@ Learning Expressjs 學習筆記
 				當: 瀏覽about頁時
 				那麼: 畫面出現about頁
 	- 執行測試，
+	- Cucumber.js 與 Nightwatch.js  
+	[參考](https://github.com/mucsi96/nightwatch-cucumber),
+		1. 安裝nightwatch `npm nightwatch --save-dev nightwatch cucumber`
+		2. 安裝nightwatch-cucumber `npm install --save-dev nightwatch-cucumber`
+		3. 設定**nightwatch.conf.js**
+		4. `node_modules\.bin\nightwatch`
 2. 建立Web 專案
 	1. 執行語法 `express --ejs --css sass`  
 	用來建立專案，在這裡我要用`ejs`作我的view engine  
