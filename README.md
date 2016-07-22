@@ -74,11 +74,25 @@ Learning Expressjs 學習筆記
 				那麼: 畫面出現about頁
 	- 執行測試，
 	- Cucumber.js 與 Nightwatch.js  
-	[參考](https://github.com/mucsi96/nightwatch-cucumber),
+		[參考](https://github.com/mucsi96/nightwatch-cucumber) :
 		1. 安裝nightwatch `npm nightwatch --save-dev nightwatch cucumber`
 		2. 安裝nightwatch-cucumber `npm install --save-dev nightwatch-cucumber`
 		3. 設定**nightwatch.conf.js**
-		4. `node_modules\.bin\nightwatch`
+		4. 執行測試，`node_modules\.bin\nightwatch` ，測試會失敗，因為尚未實作Steps(黃燈)
+		5. 實作測試，建立`webstartSteps.js`如下:  
+
+				module.exports = function() {
+				    // 1. 根據 Feature 撰寫 Step 的語法			
+				    this.Given(/^: 瀏覽about頁時$/, function(callback) {
+				      this.url("http://localhost:3000/about")
+				          .waitForElementVisible('body', 1000);
+				    });
+				    this.Given(/^: 畫面出現about頁$/, function(callback) {
+				        this.assert.valueContains("body","about me");
+				    });
+				}
+
+		6.
 2. 建立Web 專案
 	1. 執行語法 `express --ejs --css sass`  
 	用來建立專案，在這裡我要用`ejs`作我的view engine  
