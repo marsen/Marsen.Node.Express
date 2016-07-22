@@ -88,11 +88,24 @@ Learning Expressjs 學習筆記
 				          .waitForElementVisible('body', 1000);
 				    });
 				    this.Given(/^: 畫面出現about頁$/, function(callback) {
-				        this.assert.valueContains("body","about me");
+				        this.assert.title("About");
 				    });
 				}
 
-		6.
+		6. 執行測試，`node_modules\.bin\nightwatch` ，測試會失敗，因為尚未實作about頁 (紅燈)
+		7. 修改網站的`app.js`,加入about的設定
+
+				//// 略
+				var users = require('./routes/users');
+				var about = require('./routes/about');
+				//// 略
+				app.use('/users', users);
+				app.use('/about', about);
+				//// 略
+
+		8. 在routes資料夾下建立`about.js`
+		9. 在views 資料夾下建立`about.ejs`
+		10. 執行測試，`node_modules\.bin\nightwatch` ，得到第一個綠燈
 2. 建立Web 專案
 	1. 執行語法 `express --ejs --css sass`  
 	用來建立專案，在這裡我要用`ejs`作我的view engine  
