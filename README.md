@@ -32,7 +32,7 @@ Learning Expressjs 學習筆記
 2. [Hello World](http://expressjs.com/zh-tw/starter/hello-world.html)
 3. [Express 產生器](http://expressjs.com/zh-tw/starter/generator.html)
 4. [基本路由](http://expressjs.com/zh-tw/starter/basic-routing.html)
-5. [靜態檔案](http://expressjs.com/zh-tw/starter/installing.html)
+5. [靜態檔案](http://expressjs.com/zh-tw/starter/installing.html)  
 6.
 
 #### Express 產生器
@@ -52,7 +52,9 @@ Learning Expressjs 學習筆記
 1. 建立測試專案
 	- 身為一個**TDD/BDD**的擁簇，試著從測試開始開發吧
 	- 建立測試專案 `mkdir web.test`
-	- `cd web.test` >　`npm install`
+	- `cd web.test`
+		- `npm init` 填寫必要專案資訊
+		- `npm install` 安裝packages
 	- **Q1. 我真的需要建立測試專案嗎？ npm的過程中，就有test scripts 要填寫(雖然我沒寫)**
 	- 安裝必要的packages，重新執行 `npm install`
 			"devDependencies": {

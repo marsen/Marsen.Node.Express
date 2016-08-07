@@ -3,11 +3,12 @@ module.exports = function() {
 
     this.Given(/^: 瀏覽about頁時$/, function(callback) {
         // Write code here that turns the phrase above into concrete actions
-        callback(null, 'pending');
+        this.url("http://localhost:3000/about")
+            .waitForElementVisible('body', 1000);
     });
-    
+
     this.Given(/^: 畫面出現about頁$/, function(callback) {
         // Write code here that turns the phrase above into concrete actions
-        callback(null, 'pending');
+        this.assert.title("About");
     });
 }

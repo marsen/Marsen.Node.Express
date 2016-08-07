@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="webstart"
+    errors="0" failures="0" hostname="" id="" package="webstart" skipped="0"
+    tests="1" time="7.280" timestamp="Sun, 07 Aug 2016 17:06:52 GMT">
+  
+    <testcase name="瀏覽about頁" time="7.280" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>
