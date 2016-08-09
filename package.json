@@ -1,0 +1,32 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test" : "node_modules/.bin/nightwatch",
+    "e2e": "npm-run-all --parallel start test"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.4.1",
+    "express": "~4.13.4",
+    "morgan": "~1.7.0",
+    "node-sass-middleware": "0.8.0",
+    "serve-favicon": "~2.3.0"
+  },
+  "author": "Marsen Lin",
+  "license": "MIT",
+  "devDependencies": {
+    "chromedriver": "^2.21.2",
+    "cucumber": "^1.0.0",
+    "http-server": "^0.9.0",
+    "nightwatch": "^0.9.5",
+    "nightwatch-cucumber": "^4.1.0",
+    "npm-run-all": "^2.2.2",
+    "phantomjs-prebuilt": "^2.1.7",
+    "selenium-server": "^2.53.0"
+  }
+}
