@@ -9,6 +9,7 @@ var users = require('./routes/users');
 var about = require('./routes/about');
 
 var app = express();
+//redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
   var host = req.header("host");
   if (host.match(/^www\..*/i)) {
