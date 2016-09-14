@@ -9,7 +9,13 @@ var users = require('./routes/users');
 var about = require('./routes/about');
 
 var app = express();
-
+//redirect domain to www.domain
+app.all(/.*/, function(req, res, next) {  
+  if(true)
+  {
+    res.redirect(301, "http://www.google.com");
+  }
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
