@@ -9,22 +9,7 @@ var users = require('./routes/users');
 var about = require('./routes/about');
 
 var app = express();
-//redirect domain to www.domain
-app.all(/.*/, function(req, res, next) {
-  var host = req.header("host");
-  console.warn(host);
-  if(host.match(/^nodejs-marsen.rhcloud.com*/i))
-  {
-    console.warn("nodejs");
-    res.redirect(301, "http://" + host.replace('nodejs-marsen.rhcloud.com','www.marsen.me'));
-  } else if (host.match(/^www\..*/i)) {
-    console.warn("www");
-    next();
-  } else {
-    console.warn("no www");
-    res.redirect(301, "http://www." + host);
-  }
-});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
