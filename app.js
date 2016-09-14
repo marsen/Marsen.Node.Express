@@ -12,11 +12,6 @@ var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
   var host = req.header("host");
-  console.warn(host);
-  if(host.match(/^nodejs-marsen.rhcloud.com*/i))
-  {
-    res.redirect(301, "http://www.google.com");
-  }
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
