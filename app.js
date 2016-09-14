@@ -10,8 +10,10 @@ var about = require('./routes/about');
 
 var app = express();
 //redirect domain to www.domain
-app.all(/.*/, function(req, res, next) {  
-  if(true)
+app.all(/.*/, function(req, res, next) {
+  var host = req.header("host");
+  console.warn(host);
+  if(host.match(/^nodejs-marsen.rhcloud.com*/i))
   {
     res.redirect(301, "http://www.google.com");
   }
