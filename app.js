@@ -14,6 +14,11 @@ app.all(/.*/, function(req, res, next) {
   var host = req.header("host");
   console.log(host);
   next();
+  if (host.match(/^www\..*/i)) {
+    next();
+  } else {
+    next();
+  }
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
