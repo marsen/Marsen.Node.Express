@@ -12,6 +12,12 @@ var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
   var host = req.header("host");
+  console.log(host);
+  if (host.match(/^www\..*/i)) {
+    next();
+  } else {
+    res.redirect(301, "http://www." + host);
+  }
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
