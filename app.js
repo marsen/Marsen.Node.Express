@@ -13,14 +13,8 @@ var app = express();
 app.all(/.*/, function(req, res, next) {
   var host = req.header("host");
   console.log(host);
-  if(true){
-    next();
-  }
-  if (host.match(/^www\..*/i)) {
-    next();
-  } else {
-    res.redirect(301, "http://www." + host);
-  }
+  host.match(/^www\..*/i);
+  next();
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
