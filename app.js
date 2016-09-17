@@ -12,7 +12,9 @@ var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
   var host = req.header("host");
-  console.log("log " + host);
+  var ourl = req.originalUrl ;
+  console.log("\r\nhost is " + host);
+  console.log("\r\nurl is " + orul);
   host.match(/^www\..*/i);
   next();
 });
