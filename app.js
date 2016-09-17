@@ -12,7 +12,8 @@ var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
   
-  console.log("\r\nreq is " + req);
+  console.log("\r\nreq.hostname is " + req.hostname);
+  console.log("\r\nreq.originalUrl is " + req.originalUrl);
 
   next();
 });
