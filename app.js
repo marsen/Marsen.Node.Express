@@ -10,12 +10,12 @@ var about = require('./routes/about');
 
 var app = express();
 //redirect domain to www.domain
-// app.all(/.*/, function(req, res, next) {
-//   var host = req.header("host");
-//   console.log(host);
-//   host.match(/^www\..*/i);
-//   next();
-// });
+app.all(/.*/, function(req, res, next) {
+  var host = req.header("host");
+  console.log("log " + host);
+  host.match(/^www\..*/i);
+  next();
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
