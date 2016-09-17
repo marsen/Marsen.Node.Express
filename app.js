@@ -11,7 +11,7 @@ var about = require('./routes/about');
 var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
-  var host = req.originalUrl;
+  var host = req.hostname;
   console.log(host);
 
   if (host.match(/^www\..*/i)) {
