@@ -11,11 +11,14 @@ var about = require('./routes/about');
 var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
-  
-  console.log("\r\nreq.hostname is " + req.hostname);
-  console.log("\r\nreq.originalUrl is " + req.originalUrl);
+  var host = req.originalUrl;
+  console.log(host);
 
-  next();
+  if (host.match(/^www\..*/i)) {
+    next();
+  } else {
+    res.redirect(301, "http://www." + host);
+  }
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
