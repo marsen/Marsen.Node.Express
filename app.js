@@ -11,11 +11,9 @@ var about = require('./routes/about');
 var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
-  var host = req.header("host");
-  var ourl = req.originalUrl ;
-  console.log("\r\nhost is " + host);
-  console.log("\r\nurl is " + orul);
-  host.match(/^www\..*/i);
+  
+  console.log("\r\nreq is " + req);
+
   next();
 });
 // view engine setup
