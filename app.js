@@ -14,11 +14,6 @@ app.all(/.*/, function(req, res, next) {
   var host = req.hostname;
   console.log(host);
 
-  if (host.match(/^www\..*/i)) {
-    next();
-  } else {
-    res.redirect(301, "http://www." + host);
-  }
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
