@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //redirect domain to www.domain
-router.all(/.*/, function(req, res, next) {
+router.all('*', function(req, res, next) {
   var host = req.hostname;
   console.log(host);
 
