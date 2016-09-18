@@ -11,9 +11,11 @@ var about = require('./routes/about');
 var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
-  var host = req.hostname;
-  console.log(host);
-
+    if (req.headers['x-forwarded-proto'] == 'http') { 
+        res.redirect('https://' + req.headers.host + req.path);
+    } else {
+        return next();
+    }
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
