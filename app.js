@@ -11,7 +11,8 @@ var about = require('./routes/about');
 var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
-
+  consolo.log("\r\n app is :"+req.app);
+  
   next();
 });
 // view engine setup
