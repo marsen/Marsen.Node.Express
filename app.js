@@ -24,17 +24,7 @@ app.use(require('node-sass-middleware')({
   indentedSyntax: true,
   sourceMap: true
 }));
-//redirect domain to www.domain
-app.all(/.*/, function(req, res, next) {
-  var host = req.hostname;
-  console.log(host);
 
-  if (host.match(/^www\..*/i)) {
-    next();
-  } else {
-    res.redirect(301, "http://www." + host);
-  }
-});
 app.use(express.static(path.join(__dirname, './public')));
 
 app.use('/', routes);
