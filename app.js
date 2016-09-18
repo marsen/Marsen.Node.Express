@@ -11,7 +11,7 @@ var about = require('./routes/about');
 var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
-  consolo.log("\r\n app is :"+ req.hostname );
+  consolo.log("\r\n app is :"+ req.headers.host );
   
   next();
 });
