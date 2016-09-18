@@ -11,11 +11,22 @@ var about = require('./routes/about');
 var app = express();
 //redirect domain to www.domain
 app.all(/.*/, function(req, res, next) {
-    if (req.headers['x-forwarded-proto'] == 'http') { 
-        res.redirect('https://' + req.headers.host + req.path);
-    } else {
-        return next();
-    }
+  consolo.log("\r\n app is :"+req.app);
+  consolo.log("\r\n baseUrl is :"+req.baseUrl);  
+  consolo.log("\r\n body is :"+req.body);
+  consolo.log("\r\n cookies is :"+req.cookies);
+  consolo.log("\r\n fresh is :"+req.fresh);
+  consolo.log("\r\n hostname is :"+req.hostname);
+  consolo.log("\r\n ip is :"+req.ip);
+  consolo.log("\r\n ips is :"+req.ips);
+  consolo.log("\r\n method is :"+req.method);
+  consolo.log("\r\n originalUrl is :"+req.originalUrl);
+  console.log("\r\n params is :"+req.params);
+  console.log("\r\n path is :"+req.path);
+  console.log("\r\n protocol is :"+req.protocol);
+  console.log("\r\n query is :"+req.query);
+  console.log("\r\n route is :"+req.route);    
+  next();
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
