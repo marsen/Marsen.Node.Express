@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //redirect domain to www.domain
-router.all(/.*/, function(req, res, next) {
+app.all(/.*/, function(req, res, next) {
   var host = req.hostname;
   console.log(host);
 
@@ -21,7 +21,13 @@ router.get(['/','/me'], function(req, res, next) {
 router.get('/site', function(req, res, next) {
   var host = req.hostname;
   console.log(host);
-  res.render('about/site', { title: '關於本站' });  
+
+  if (host.match(/^www\..*/i)) {
+    res.render('about/site', { title: '關於本站' });
+  } else {
+    res.redirect(301, "http://www." + host);
+  }
+  
 });
 
 module.exports = router;
