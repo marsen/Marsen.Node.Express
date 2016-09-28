@@ -48,8 +48,8 @@ var AppContainer = function () {
     });
 
     // Removed 'SIGPIPE' from the list - bugz 852598.
-    ['SIGHUP', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-      'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
+    ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
+      'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2'
     ].forEach(function (element, index, array) {
         process.on(element, function () {
           self.terminator(element);
