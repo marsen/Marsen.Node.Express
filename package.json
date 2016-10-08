@@ -24,19 +24,22 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "test" : "node_modules/.bin/nightwatch",
+    "test": "node_modules/.bin/nightwatch",
     "e2e": "npm-run-all --parallel start test"
   },
   "dependencies": {
+    "@types/bootstrap": "^3.3.32",
+    "@types/jqueryui": "^1.11.31",
     "body-parser": "^1.15.1",
     "cookie-parser": "^1.4.3",
     "debug": "^2.2.0",
-	  "ejs": "~2.4.1",
+    "ejs": "~2.4.1",
     "express": "^4.13.4",
     "morgan": "^1.7.0",
-    "passport": "^0.2.2",
     "node-sass-middleware": "0.8.0",
-    "serve-favicon": "~2.3.0"
+    "passport": "^0.2.2",
+    "serve-favicon": "~2.3.0",
+    "typescript": "^2.0.3"
   },
   "devDependencies": {
     "chromedriver": "^2.21.2",
