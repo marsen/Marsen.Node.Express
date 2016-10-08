@@ -7,7 +7,9 @@ router.get(['/','/me'], function(req, res, next) {
 });
 
 router.get('/site', function(req, res, next) {
-  res.render('about/site', { title: '關於本站' });
+  var host = req.hostname;
+  console.log(host);
+  res.render('about/site', { title: '關於本站' });  
 });
 
 module.exports = router;
