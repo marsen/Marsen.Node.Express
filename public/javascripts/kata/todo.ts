@@ -42,26 +42,56 @@ class TodoService extends BaseService<todoItem>{
     }
 
     public Render() : void {
-        let html = '';
+        let doneHtml = '';
+        let undoHtml = '';
+        
         this.List.forEach((item)=>{
-            html += `<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />${item.Content}</label></div></li>` ;
+            if(item.Status == todoStatus.done){
+                doneHtml += `<li>${item.Content}<button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>`;
+            } else if (item.Status == todoStatus.undo){
+                undoHtml += `<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />${item.Content}</label></div></li>` ;
+            }
         });
-        $('#sortable').html(html);
+        $("#done-items").html(doneHtml);
+        $('#sortable').html(undoHtml);
+    }
+
+    Delete(data: todoItem){
+        var index = this.List.indexOf(data);
+        this.List.splice(index,1) ;
     }
 
     Init(){
         this.List = new Array<todoItem>();
+        // mark task as done
+        $('.todolist').on('change','#sortable li input[type="checkbox"]',function(){
+            if($(this).prop('checked')){
+                $(this).parent().parent().parent().addClass('remove');
+                $(this).parent().text();
+            }
+        });
+        
         //// mock data
-        var buyMilk : todoItem = { 
+        var buyMilk : todoItem = {
+            Id: 1, 
             Content: '買牛奶', 
             Status: todoStatus.undo 
         };
         this.List.push(buyMilk);
-        var doHomework : todoItem = { 
+        var doHomework : todoItem = {
+            Id: 2, 
             Content: '寫作業', 
-            Status: todoStatus.undo 
+            Status: todoStatus.done 
         };
         this.List.push(doHomework);
+        var feedCat : todoItem = {
+            Id: 3, 
+            Content: '餵貓咪', 
+            Status: todoStatus.undo 
+        };
+        this.List.push(feedCat);
+
+        //// Render
         this.Render();
     }
 }
