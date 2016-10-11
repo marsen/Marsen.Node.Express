@@ -16,10 +16,6 @@ class BaseService<T>{
         this.List.splice(index,1) ;
     }
 
-    GetAll(): Array<T> {
-         return this.List;
-    }
-
     Render(){
 
     }
