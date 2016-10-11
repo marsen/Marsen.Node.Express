@@ -22,6 +22,7 @@ class BaseService<T>{
 }
 
 interface todoItem {
+    Id:number;
     Content: string;
     Status: todoStatus;
 }
@@ -53,17 +54,19 @@ class TodoService extends BaseService<todoItem>{
     }
 
     Delete(data: todoItem){
-        var index = this.List.indexOf(data);
-        this.List.splice(index,1) ;
+        data.Status = todoStatus.done ;
+        this.Render();
     }
 
     Init(){
         this.List = new Array<todoItem>();
         // mark task as done
-        $('.todolist').on('change','#sortable li input[type="checkbox"]',function(){
-            if($(this).prop('checked')){
-                $(this).parent().parent().parent().addClass('remove');
-                $(this).parent().text();
+        $('.todolist').on('change','#sortable li input[type="checkbox"]',(evt)=>{
+            var self = evt.target;
+            var text = $(self).parent().text();
+            if($(self).prop('checked')){
+                var doneItem = this.List.filter((i)=>{return text == i.Content;})[0];
+                this.Delete(doneItem);
             }
         });
         
