@@ -22,7 +22,6 @@ class BaseService<T>{
 }
 
 interface todoItem {
-    Id:number;
     Content: string;
     Status: todoStatus;
 }
@@ -51,12 +50,14 @@ class TodoService extends BaseService<todoItem>{
         });
         $("#done-items").html(doneHtml);
         $('#sortable').html(undoHtml);
+        $('.add-todo').val('');
     }
 
     Delete(data: todoItem){
         data.Status = todoStatus.done ;
-        this.Render();
     }
+
+
 
     Init(){
         this.List = new Array<todoItem>();
@@ -67,24 +68,38 @@ class TodoService extends BaseService<todoItem>{
             if($(self).prop('checked')){
                 var doneItem = this.List.filter((i)=>{return text == i.Content;})[0];
                 this.Delete(doneItem);
+                this.Render();
+            }
+        });
+
+        $('.add-todo').on('keypress',(evt) => {
+            evt.preventDefault
+            if (evt.which == 13) {
+                if($(evt.target).val() != ''){
+                    var todo = $(evt.target).val();
+                    this.Create(  {
+                        Content : $(evt.target).val() ,
+                        Status : todoStatus.undo 
+                    });
+                    this.Render();                 
+                }else{
+                    // some validation
+                }
             }
         });
         
         //// mock data
         var buyMilk : todoItem = {
-            Id: 1, 
             Content: '買牛奶', 
             Status: todoStatus.undo 
         };
         this.List.push(buyMilk);
         var doHomework : todoItem = {
-            Id: 2, 
             Content: '寫作業', 
             Status: todoStatus.done 
         };
         this.List.push(doHomework);
         var feedCat : todoItem = {
-            Id: 3, 
             Content: '餵貓咪', 
             Status: todoStatus.undo 
         };
