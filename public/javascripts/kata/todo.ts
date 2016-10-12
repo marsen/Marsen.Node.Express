@@ -43,7 +43,7 @@ class TodoService extends BaseService<todoItem>{
         
         this.List.forEach((item)=>{
             if(item.Status == todoStatus.done){
-                doneHtml += `<li>${item.Content}<button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>`;
+                doneHtml += `<li>${item.Content}<button class="recover-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-share-alt"></span></button><button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>`;
             } else if (item.Status == todoStatus.undo){
                 undoHtml += `<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />${item.Content}</label></div></li>` ;
             }
@@ -88,6 +88,20 @@ class TodoService extends BaseService<todoItem>{
             }
         });
         
+        $('.todolist').on('click', '#done-items li button.recover-item',(evt)=>{
+            var text = $(evt.target).parent().parent().text();
+            var recoverItem = this.List.filter((i)=>{return text == i.Content;})[0];
+            recoverItem.Status = todoStatus.undo ;
+            this.Render();
+        });
+
+        $('.todolist').on('click','#done-items li button.remove-item' ,(evt)=>{
+            var text = $(evt.target).parent().parent().text();
+            var removeItem = this.List.filter((i)=>{return text == i.Content;})[0];
+            var index = this.List.indexOf(removeItem);
+            this.List.splice(index,1) ;
+            this.Render();
+        });
         //// mock data
         var buyMilk : todoItem = {
             Content: '買牛奶', 
