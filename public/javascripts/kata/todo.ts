@@ -102,6 +102,13 @@ class TodoService extends BaseService<todoItem>{
             this.List.splice(index,1) ;
             this.Render();
         });
+
+        $('#checkAll').on('click',(evt)=>{
+            this.List.forEach((item)=>{
+                item.Status = todoStatus.done;
+            });
+            this.Render();
+        });
         //// mock data
         var buyMilk : todoItem = {
             Content: '買牛奶', 
