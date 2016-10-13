@@ -5,7 +5,7 @@
 class BaseService<T>{
     constructor(private type: string) {}
     
-    List:Array<T>;
+    List:Array<T> ;
 
     Create(data: T) {
         this.List.push(data);
@@ -60,7 +60,17 @@ class TodoService extends BaseService<todoItem>{
 
 
     Init(){
-        this.List = new Array<todoItem>();
+        //// todoList in localStorage         
+        var list = window.localStorage.getItem("todoList");        
+        if(!list){
+            this.List = new Array<todoItem>();
+        }else{
+            this.List = JSON.parse(list);
+        }
+        window.onbeforeunload = (evt) => {
+            window.localStorage.setItem("todoList",JSON.stringify(this.List));
+        };
+
         // mark task as done
         $('.todolist').on('change','#sortable li input[type="checkbox"]',(evt)=>{
             var self = evt.target;
@@ -109,22 +119,6 @@ class TodoService extends BaseService<todoItem>{
             });
             this.Render();
         });
-        //// mock data
-        var buyMilk : todoItem = {
-            Content: '買牛奶', 
-            Status: todoStatus.undo 
-        };
-        this.List.push(buyMilk);
-        var doHomework : todoItem = {
-            Content: '寫作業', 
-            Status: todoStatus.done 
-        };
-        this.List.push(doHomework);
-        var feedCat : todoItem = {
-            Content: '餵貓咪', 
-            Status: todoStatus.undo 
-        };
-        this.List.push(feedCat);
 
         //// Render
         this.Render();
