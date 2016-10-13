@@ -23,9 +23,11 @@
     "npm": ">= 3.10.8"
   },
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "npm-run-all ts run",
     "test": "node_modules/.bin/nightwatch",
-    "e2e": "npm-run-all --parallel start test"
+    "e2e": "npm-run-all --parallel start test",
+    "run": "node ./bin/www",
+    "ts": "gulp"
   },
   "dependencies": {
     "@types/bootstrap": "^3.3.32",
