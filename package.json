@@ -23,7 +23,7 @@
     "npm": ">= 3.10.8"
   },
   "scripts": {
-    "start": "npm-run-all ts run",
+    "start": "node ./bin/www",
     "test": "node_modules/.bin/nightwatch",
     "e2e": "npm-run-all --parallel start test",
     "run": "node ./bin/www",
