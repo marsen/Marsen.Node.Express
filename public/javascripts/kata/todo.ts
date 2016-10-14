@@ -30,7 +30,10 @@ enum todoStatus{
     undo,
     done,    
 }
-
+/** 
+ * Hover & IntelliSense UI consistency
+ * TodoService
+*/
 class TodoService extends BaseService<todoItem>{
     constructor(){
         super("todoItem");
@@ -126,4 +129,3 @@ class TodoService extends BaseService<todoItem>{
 }
 
 var todoService = new TodoService();
-todoService.Render();

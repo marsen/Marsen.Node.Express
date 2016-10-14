@@ -26,6 +26,10 @@ var todoStatus;
     todoStatus[todoStatus["undo"] = 0] = "undo";
     todoStatus[todoStatus["done"] = 1] = "done";
 })(todoStatus || (todoStatus = {}));
+/**
+ * Hover & IntelliSense UI consistency
+ * TodoService
+*/
 var TodoService = (function (_super) {
     __extends(TodoService, _super);
     function TodoService() {
@@ -113,4 +117,3 @@ var TodoService = (function (_super) {
     return TodoService;
 }(BaseService));
 var todoService = new TodoService();
-todoService.Render();
