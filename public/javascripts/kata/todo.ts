@@ -5,7 +5,7 @@
 class BaseService<T>{
     constructor(private type: string) {}
     
-    List:Array<T> ;
+    protected List:Array<T> ;
 
     Create(data: T) {
         this.List.push(data);
@@ -36,8 +36,7 @@ enum todoStatus{
 */
 class TodoService extends BaseService<todoItem>{
     constructor(){
-        super("todoItem");
-        this.Init();
+        super("todoItem");        
     }
 
     public Render() : void {
@@ -129,3 +128,4 @@ class TodoService extends BaseService<todoItem>{
 }
 
 var todoService = new TodoService();
+todoService.Init();
