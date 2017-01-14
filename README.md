@@ -3,10 +3,10 @@ Learning Expressjs 學習筆記
 
 ## 環境
 
-- OS:WINDOWS 10
-- Tools
-	- Editor: VSCode	
--
+### OS:WINDOWS 10
+### Tools
+	##### Editor: VSCode	
+
 ---
 ## 目的
 1. 建立一個以javascript開發的網站(暫時用Express)
