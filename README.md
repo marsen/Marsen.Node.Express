@@ -4,8 +4,8 @@ Learning Expressjs 學習筆記
 ## 環境
 
 - OS:WINDOWS 10
-- Editor: Atom
-	- 排版外掛 [atom-beautigy](https://atom.io/packages/atom-beautify) (ctrl+shift+B)
+- Tools
+	- Editor: VSCode	
 -
 ---
 ## 目的
