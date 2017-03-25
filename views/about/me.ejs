@@ -1,11 +1,450 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>關於我</h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marsen Lin - UX Designer & Front End Developer</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="/images/about/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/about/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/about/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/about/apple-touch-icon-114x114.png">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"  href="/stylesheets/about/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/fonts/font-awesome/css/font-awesome.css">
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css"  href="/stylesheets/about/style.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/about/prettyPhoto.css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+<!-- Header -->
+<header id="header">
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="intro-text">
+          <h1>Hello, I'm <span class="name">Marsen Lin</span></h1>
+          <p>Web Developer & Architects</p>
+          <a href="#about" class="btn btn-default btn-lg page-scroll">Learn More</a> </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Navigation -->
+<div id="nav">
+  <nav class="navbar navbar-custom">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
+        <a class="navbar-brand page-scroll" href="#page-top">Marsen Lin</a> </div>
+      
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+          <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+          <li class="hidden"> <a href="#page-top"></a> </li>
+          <li> <a class="page-scroll" href="#about">About</a> </li>
+          <li> <a class="page-scroll" href="#skills">Skills</a> </li>
+          <!--<li> <a class="page-scroll" href="#portfolio">Portfolio</a> </li>-->
+          <li> <a class="page-scroll" href="#resume">Resume</a> </li>
+          <li> <a class="page-scroll" href="#contact">Contact</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- About Section -->
+<div id="about">
+  <div class="container">
+    <div class="section-title text-center center">
+      <h2>About Me</h2>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center"><img src="/images/about/about.jpg" class="img-responsive"></div>
+      <div class="col-md-8 col-md-offset-2">
+        <div class="about-text">
+          <p>Hi , 我是 Marsen , 是一名軟體工程師 ,不寫code的時候就會踢踢足球、看看書。 </p>
+          <p>我認為工程師並不是冰冰的程式碼產生器, 也應該有自已的價值觀與人文素養。</p>
+          <p>這個網站純綷用來練習我在工作上學到的一切 ,我不是前端、不是後端 ,也不認為自已是傳說中的全端。 </p>
+          <p>只寫寫程式、享受生活 ,然後用程式解決生活的難題 ,用生活給程式一點溫度。</p>
+          <p>歡迎與我交流:)</p>
+          <!--<p class="text-center"><a class="btn btn-primary" href="#"><i class="fa fa-download"></i> Download Resume</a></p>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Skills Section -->
+<div id="skills" class="text-center">
+  <div class="container">
+    <div class="section-title center">
+      <h2>Skills</h2>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="85"> <span class="percent">85</span> </span>
+        <h4>C Sharp</h4>
+      </div>
+      <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="75"> <span class="percent">75</span> </span>
+        <h4>Javascript</h4>
+      </div>
+      <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="70"> <span class="percent">70</span> </span>
+        <h4>HTML & CSS</h4>
+      </div>
+      <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="80"> <span class="percent">80</span> </span>
+        <h4>OS & Web Server</h4>
+      </div>
+      <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="60"> <span class="percent">60</span> </span>
+        <h4>Database</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Portfolio Section -->
+<!--
+<div id="portfolio">
+  <div class="container">
+    <div class="section-title text-center center">
+      <h2>Portfolio</h2>
+      <hr>
+    </div>
+    <div class="categories">
+      <ul class="cat">
+        <li>
+          <ol class="type">
+            <li><a href="#" data-filter="*" class="active">All</a></li>
+            <li><a href="#" data-filter=".web">Web Design</a></li>
+            <li><a href="#" data-filter=".app">App Development</a></li>
+            <li><a href="#" data-filter=".branding">Branding</a></li>
+          </ol>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="row">
+      <div class="portfolio-items">
+        <div class="col-sm-6 col-md-3 col-lg-3 web">
+          <div class="portfolio-item">
+            <div class="hover-bg"> <a href="/images/about/portfolio/01-large.jpg" title="Project description" rel="prettyPhoto">
+              <div class="hover-text">
+                <h4>Project Title</h4>
+                <small>Web Design</small> </div>
+              <img src="/images/about/portfolio/01-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 app">
+          <div class="portfolio-item">
+            <div class="hover-bg"> <a href="/images/about/portfolio/02-large.jpg" title="Project description" rel="prettyPhoto">
+              <div class="hover-text">
+                <h4>Project Title</h4>
+                <small>App Development</small> </div>
+              <img src="/images/about/portfolio/02-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 web">
+          <div class="portfolio-item">
+            <div class="hover-bg"> <a href="/images/about/portfolio/03-large.jpg" title="Project description" rel="prettyPhoto">
+              <div class="hover-text">
+                <h4>Project Title</h4>
+                <small>Web Design</small> </div>
+              <img src="/images/about/portfolio/03-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 web">
+          <div class="portfolio-item">
+            <div class="hover-bg"> <a href="/images/about/portfolio/04-large.jpg" title="Project description" rel="prettyPhoto">
+              <div class="hover-text">
+                <h4>Project Title</h4>
+                <small>Web Design</small> </div>
+              <img src="/images/about/portfolio/04-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 app">
+          <div class="portfolio-item">
+            <div class="hover-bg"> <a href="/images/about/portfolio/05-large.jpg" title="Project description" rel="prettyPhoto">
+              <div class="hover-text">
+                <h4>Project Title</h4>
+                <small>App Development</small> </div>
+              <img src="/images/about/portfolio/05-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 branding">
+          <div class="portfolio-item">
+            <div class="hover-bg"> <a href="/images/about/portfolio/06-large.jpg" title="Project description" rel="prettyPhoto">
+              <div class="hover-text">
+                <h4>Project Title</h4>
+                <small>Branding</small> </div>
+              <img src="/images/about/portfolio/06-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 branding app">
+          <div class="portfolio-item">
+            <div class="hover-bg"> <a href="/images/about/portfolio/07-large.jpg" title="Project description" rel="prettyPhoto">
+              <div class="hover-text">
+                <h4>Project Title</h4>
+                <small>App Development, Branding</small> </div>
+              <img src="/images/about/portfolio/07-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 web">
+          <div class="portfolio-item">
+            <div class="hover-bg"> <a href="/images/about/portfolio/08-large.jpg" title="Project description" rel="prettyPhoto">
+              <div class="hover-text">
+                <h4>Project Title</h4>
+                <small>Web Design</small> </div>
+              <img src="/images/about/portfolio/08-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<!-- Achievements Section -->
+<!--
+<div id="achievements" class="text-center">
+  <div class="container">
+    <div class="section-title center">
+      <h2>Some Stats</h2>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="200ms">
+        <div class="achievement-box"> <span class="count">310</span>
+          <h4>Happy Clients</h4>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="400ms">
+        <div class="achievement-box"> <span class="count">4700</span>
+          <h4>Hours of Work</h4>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="600ms">
+        <div class="achievement-box"> <span class="count">30</span>
+          <h4>Awards Won</h4>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="800ms">
+        <div class="achievement-box"> <span class="count">8</span>
+          <h4>Years of Experience</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<!-- Resume Section -->
+<div id="resume" class="text-center">
+  <div class="container">
+    <div class="section-title center">
+      <h2>Experience</h2>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="timeline">
+          <li class="timeline-inverted">
+            <div class="timeline-image">
+              <h4>Jul 2015 <br>
+                - <br>
+                PRESENT </h4>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>91APP, Inc</h4>
+                <h4 class="subheading">Programmer</h4>
+              </div>
+              <div class="timeline-body">
+                <p>7*4 Maintain system and fix the issue/bug is tracking or not .</p>
+                <p>Adjust the develop flow and architecture .</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="timeline-image">
+              <h4>Nov 2010 <br>
+                - <br>
+                Jul 2015 </h4>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Wistronits to CMoney</h4>
+                <h4 class="subheading">Programmer</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Wistronits : Government system develop and maintain </p>
+                <p>CMoney : Built a stock market web application from zero . Be a leader in small team (less than 5 people). </p>
+              </div>
+            </div>
+          </li>
+          <li class="timeline-inverted">
+            <div class="timeline-image">
+              <h4>Aug 2008 <br>
+                - <br>
+                Oct 2010 </h4>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Losing and searching period</h4>
+                <h4 class="subheading">Salesman and more</h4>
+              </div>
+              <div class="timeline-body">
+                <p>I was a salesman , MIS , teacher and assistant . Do the all things but not professional enought . So I decided to Institute for Information Industry learning coding again.</p>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="section-title center">
+      <h2>Education and Military Life </h2>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="timeline">
+          <!-- Military Life Section-->
+          <li>
+            <div class="timeline-image">
+              <h4>Sep 2007 <br>
+                - <br>
+                Match 2008 </h4>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Navy</h4>
+                <h4 class="subheading">Seaman</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Just watch delphin and meteor </p>
+              </div>
+            </div>
+          </li>
+          <!-- Education Section-->          
+          <li class="timeline-inverted">
+            <div class="timeline-image">
+              <h4>Sep 2003 <br>
+                - <br>
+                Jun 2007 </h4>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Chung Yuan Christian University</h4>
+                <h4 class="subheading">Mathematics</h4>
+              </div>
+              <div class="timeline-body">
+                <p>The first time learning program and coding</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contact Section -->
+<div id="contact" class="text-center">
+  <div class="container">
+    <div class="section-title center">
+      <h2>Contact</h2>
+      <hr>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+      <!--
+      <div class="col-md-4"> <i class="fa fa-map-marker fa-2x"></i>
+        <p>4321 California St,<br>
+          San Francisco, CA 12345</p>
+      </div>
+      -->
+      <div class="center"> <i class="fa fa-envelope-o fa-2x"></i>
+        <p>marsen@boun.cr</p>
+      </div>
+      <!--
+      <div class="col-md-4"> <i class="fa fa-phone fa-2x"></i>
+        <p> +1 123 456 1234</p>
+      </div>
+      -->
+      <div class="clearfix"></div>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Find me here</h3>
+      <!--
+      <form name="sentMessage" id="contactForm" novalidate>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+          <p class="help-block text-danger"></p>
+        </div>
+        <div id="success"></div>
+        <button type="submit" class="btn btn-default">Send Message</button>
+      </form>
+      -->
+      <div class="social">
+        <ul>
+          <li><a href="https://www.facebook.com/thisismysoul"><i class="fa fa-facebook"></i></a></li>
+          <!--<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+          <!--<li><a href="#"><i class="fa fa-dribbble"></i></a></li>-->
+          <li><a href="https://github.com/marsen"><i class="fa fa-github"></i></a></li>
+          <!--<li><a href="#"><i class="fa fa-instagram"></i></a></li>-->
+          <li><a href="https://www.linkedin.com/in/marsenlin"><i class="fa fa-linkedin"></i></a></li>
+          <li><a href="https://devopsmars.slack.com/"><i class="fa fa-slack"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="footer">
+  <div class="container text-center">
+    <div class="fnav">
+      <p>Copyright &copy; 2016 John Doe. Designed by <a href="http://www.templatewire.com" rel="nofollow">TemplateWire</a></p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="/javascripts/about/jquery.1.11.1.js"></script> 
+<script type="text/javascript" src="/javascripts/about/bootstrap.js"></script> 
+<script type="text/javascript" src="/javascripts/about/SmoothScroll.js"></script> 
+<script type="text/javascript" src="/javascripts/about/easypiechart.js"></script> 
+<script type="text/javascript" src="/javascripts/about/jquery.prettyPhoto.js"></script> 
+<script type="text/javascript" src="/javascripts/about/jquery.isotope.js"></script> 
+<script type="text/javascript" src="/javascripts/about/jquery.counterup.js"></script> 
+<script type="text/javascript" src="/javascripts/about/waypoints.js"></script> 
+<script type="text/javascript" src="/javascripts/about/jqBootstrapValidation.js"></script> 
+<script type="text/javascript" src="/javascripts/about/contact_me.js"></script> 
+<script type="text/javascript" src="/javascripts/about/main.js"></script>
+</body>
 </html>

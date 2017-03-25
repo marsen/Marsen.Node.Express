@@ -19,8 +19,8 @@
     "url": "https://github.com/openshift/origin-server"
   },
   "engines": {
-    "node": ">= 6.5.0",
-    "npm": ">= 3.10.8"
+    "node": ">= 6.10.0",
+    "npm": ">= 3.10.10"
   },
   "scripts": {
     "start": "node ./bin/www",
