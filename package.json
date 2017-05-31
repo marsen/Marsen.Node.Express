@@ -24,6 +24,7 @@
   },
   "scripts": {
     "start": "node ./bin/www",
+    "dev": "supervisor ./bin/www",
     "test": "node_modules/.bin/nightwatch",
     "e2e": "npm-run-all --parallel start test",
     "run": "node ./bin/www",
