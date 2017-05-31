@@ -23,9 +23,12 @@ router.get('/', function(req, res, next) {
     var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);     
     if(hasAuth()){
       oauth2Client.credentials = getToken();
-      var data = getSpiritLog(oauth2Client);
-      console.log('data:'+data);
-      res.render('spiritlog/index', { title: 'KATA!!!!', data:data });
+      getSpiritLog(oauth2Client)
+      .then((result)=>{                  
+        var data = result.values;
+        //console.log('data:'+data);
+        res.render('spiritlog/index', { title: 'KATA!!!!', data:JSON.stringify(data) });
+      });
     }else{
         var authUrl = oauth2Client.generateAuthUrl({
           access_type: 'offline',
@@ -41,6 +44,7 @@ router.get('/', function(req, res, next) {
         res.end();      
     }    
   }catch(err){
+    console.log(err);
     res.render('spiritlog/index', { title: 'ERROR!!!' });
   }
 });
@@ -69,27 +73,21 @@ router.get('/auth', function(req, res, next) {
 function getSpiritLog(auth) {
   //console.log(auth);
   var sheets = google.sheets('v4');
-  sheets.spreadsheets.values.get({
-    auth: auth,
-    spreadsheetId: '1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ',
-    range: '\'Class Data\'!A2:52',
-  }, function(err, response) {
-    if (err) {
-      console.log('The API returned an error: ' + err);
-      return;
-    }
-    var rows = response.values;
-    if (rows.length == 0) {
-      console.log('No data found.');
-    } else {
-      console.log('Name, Major:');
-      for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        // Print columns A and E, which correspond to indices 0 and 4.
-        console.log('%s, %s', row[0], row[1]);
+  var promise = new Promise((resolve , reject )=>{
+    sheets.spreadsheets.values.get({
+      auth: auth,
+      spreadsheetId: '1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ',
+      range: '\'Class Data\'!A2:52',
+    }, (err, response)=>{
+      if (err) {
+        console.log('The API returned an error: ' + err);
+        return;
       }
-    }
+      //console.log(response.values[0][0]);
+      resolve(response);
+    });
   });
+  return promise;
 }
 
 function getCredentials(){
