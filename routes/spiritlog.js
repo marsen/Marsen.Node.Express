@@ -22,6 +22,7 @@ router.get('/', function(req, res, next) {
     var auth = new googleAuth();
     var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);     
     if(hasAuth()){
+      oauth2Client.credentials = getToken();
       var data = getSpiritLog(oauth2Client);
       console.log('data:'+data);
       res.render('spiritlog/index', { title: 'KATA!!!!', data:data });
@@ -94,7 +95,7 @@ function getSpiritLog(auth) {
 function getCredentials(){
   try {
     var content = fs.readFileSync('client_secret.json');
-    console.log(content);
+    //console.log(content);
     var credentials = JSON.parse(content);
     return credentials;
   }catch(err){
@@ -102,6 +103,10 @@ function getCredentials(){
   }
 }
 
+function getToken(){
+  var data = fs.readFileSync(TOKEN_PATH);
+  return JSON.parse(data);
+}
 
 function hasAuth(){
     // Check Token And Expiry
