@@ -9,98 +9,113 @@ var app = express();
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/sheets.googleapis.com-nodejs-quickstart.json
 var SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
-var TOKEN_DIR = __dirname + '/.credentials/';
+var TOKEN_DIR = process.cwd() + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json';
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
-  //res.render('spiritlog/index', { title: 'KATA!!' });
-  // Load client secrets from a local file.
-  fs.readFile('client_secret.json', function processClientSecrets(err, content) {
-    if (err) {
-      console.log('Error loading client secret file: ' + err);
-      return;
-    }
-    // 
-    
-    // Authorize a client with the loaded credentials, then call the
-    // Google Sheets API.  
-    authorize(JSON.parse(content),res, listMajors);
-  });
+  try {
+    var credentials = getCredentials();
+    var clientSecret = credentials.web.client_secret;
+    var clientId = credentials.web.client_id;
+    var redirectUrl = credentials.web.redirect_uris[0];
+    var auth = new googleAuth();
+    var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);     
+    if(hasAuth()){
+      var data = getSpiritLog(oauth2Client);
+      console.log('data:'+data);
+      res.render('spiritlog/index', { title: 'KATA!!!!', data:data });
+    }else{
+        var authUrl = oauth2Client.generateAuthUrl({
+          access_type: 'offline',
+          scope: SCOPES
+        });
+        console.warn('Get new token from '+authUrl);
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires', '-1');
+        res.header('Pragma', 'no-cache');        
+        res.writeHead(302,
+          {Location: authUrl}
+        );
+        res.end();      
+    }    
+  }catch(err){
+    res.render('spiritlog/index', { title: 'ERROR!!!' });
+  }
 });
 
-router.get('/auth', function(req, res, next) {
-  res.render('spiritlog/auth', { title: 'auth' });
-});
-
-/** functions **/
-
-/**
- * Create an OAuth2 client with the given credentials, and then execute the
- * given callback function.
- *
- * @param {Object} credentials The authorization client credentials.
- * @param {function} callback The callback to call with the authorized client.
- */
-function authorize(credentials, callback) {  
+router.get('/auth', function(req, res, next) {  
+  var code = req.query.code;
+  console.log('Auth code:'+code);
+  var credentials = getCredentials();
   var clientSecret = credentials.web.client_secret;
   var clientId = credentials.web.client_id;
   var redirectUrl = credentials.web.redirect_uris[0];
   var auth = new googleAuth();
-  var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
-
-  // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, function(err, data) {    
+  var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);  
+  oauth2Client.getToken(code, function(err, token) {
     if (err) {
-      getNewToken(oauth2Client, callback);
+      console.log('Error while trying to retrieve access token', err);
+      return;
+    }
+    oauth2Client.credentials = token;
+    storeToken(token);
+  });
+
+  res.render('spiritlog/auth', { title: 'auth' });
+});
+/** new functions **/
+function getSpiritLog(auth) {
+  //console.log(auth);
+  var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.get({
+    auth: auth,
+    spreadsheetId: '1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ',
+    range: '\'Class Data\'!A2:52',
+  }, function(err, response) {
+    if (err) {
+      console.log('The API returned an error: ' + err);
+      return;
+    }
+    var rows = response.values;
+    if (rows.length == 0) {
+      console.log('No data found.');
     } else {
-      var token = JSON.parse(data);      
-      if(token.expiry_date > Date.now()){
-        oauth2Client.credentials = token;
-        callback(oauth2Client);
-      }else{
-        console.log('auth expired');
-        getNewToken(oauth2Client, callback);
+      console.log('Name, Major:');
+      for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        // Print columns A and E, which correspond to indices 0 and 4.
+        console.log('%s, %s', row[0], row[1]);
       }
     }
   });
 }
 
-/**
- * Get and store new token after prompting for user authorization, and then
- * execute the given callback with the authorized OAuth2 client.
- *
- * @param {google.auth.OAuth2} oauth2Client The OAuth2 client to get token for.
- * @param {getEventsCallback} callback The callback to call with the authorized
- *     client.
- */
-function getNewToken(oauth2Client,res, callback) {
-  var authUrl = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES
-  });
-  console.log('Authorize this app by visiting this url: ', authUrl);
-  res.writeHead(301,
-    {Location: authUrl}
-  );
-  res.end();
+function getCredentials(){
+  try {
+    var content = fs.readFileSync('client_secret.json');
+    console.log(content);
+    var credentials = JSON.parse(content);
+    return credentials;
+  }catch(err){
+    throw 'Error loading client secret file: ' + err ;
+  }
+}
 
-  var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  rl.question('Enter the code from that page here: ', function(code) {
-    rl.close();
-    oauth2Client.getToken(code, function(err, token) {
-      if (err) {
-        console.log('Error while trying to retrieve access token', err);
-        return;
+
+function hasAuth(){
+    // Check Token And Expiry
+    try{
+      var data = fs.readFileSync(TOKEN_PATH);
+      var token = JSON.parse(data);
+      if(token.expiry_date > Date.now()){
+        return true;
+      }else{
+        return false;
       }
-      oauth2Client.credentials = token;
-      storeToken(token);
-      callback(oauth2Client);
-    });
-  });
+    }catch(err){
+      return false;
+    }  
 }
 
 /**
@@ -119,7 +134,7 @@ function storeToken(token) {
   fs.writeFile(TOKEN_PATH, JSON.stringify(token));
   console.log('Token stored to ' + TOKEN_PATH);
 }
-
+/** functions **/
 /**
  * Print the names and majors of students in a sample spreadsheet:
  * https://docs.google.com/spreadsheets/d/1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ/edit
