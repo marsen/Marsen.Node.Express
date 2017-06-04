@@ -10,7 +10,7 @@
   ],
   "author": {
     "name": "Marsen Lin",
-    "email": "ramr@example.org",
+    "email": "marsen@@boun.cr",
     "url": "http://www.openshift.com/"
   },
   "homepage": "http://www.openshift.com/",
@@ -19,11 +19,12 @@
     "url": "https://github.com/openshift/origin-server"
   },
   "engines": {
-    "node": ">= 6.10.0",
-    "npm": ">= 3.10.10"
+    "node": ">= 7.9.0",
+    "npm": ">= 4.2.0"
   },
   "scripts": {
     "start": "node ./bin/www",
+    "dev": "supervisor ./bin/www",
     "test": "node_modules/.bin/nightwatch",
     "e2e": "npm-run-all --parallel start test",
     "run": "node ./bin/www",
@@ -37,8 +38,10 @@
     "debug": "^2.2.0",
     "ejs": "~2.4.1",
     "express": "^4.13.4",
+    "google-auth-library": "^0.10.0",
+    "googleapis": "^19.0.0",
     "morgan": "^1.7.0",
-    "node-sass-middleware": "0.8.0",
+    "node-sass-middleware": "0.11.0",
     "passport": "^0.2.2",
     "serve-favicon": "~2.3.0",
     "typescript": "^2.0.3"

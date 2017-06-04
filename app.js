@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var kata = require('./routes/kata');
+var spiritlog = require('./routes/spiritlog');
 var api = require('./routes/api');
 var about = require('./routes/about');
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, './public')));
 
 app.use('/', routes);
 app.use('/kata', kata);
+app.use('/spiritlog', spiritlog);
 app.use('/about', about);
 app.use('/api', api);
 
