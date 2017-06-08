@@ -24,8 +24,14 @@ router.get('/', function(req, res, next) {
     if(hasAuth()){
       oauth2Client.credentials = getToken();
       getSpiritLog(oauth2Client)
-      .then((result)=>{                  
-        var data = result.values;
+      .then((result)=>{      
+        var data = [];
+        result.values.forEach(function(e) {
+            data.push({ 
+              date:new Date(e[0]),
+              close:e[1]
+            });
+        }, this);        
         //console.log('data:'+data);
         res.render('spiritlog/index', { title: 'KATA!!!!', data:JSON.stringify(data) });
       });
