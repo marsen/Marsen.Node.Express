@@ -7,10 +7,11 @@ var googleAuth = require('google-auth-library');
 var app = express();
 
 // If modifying these scopes, delete your previously saved credentials
-// at ~/.credentials/sheets.googleapis.com-nodejs-quickstart.json
+// at ~/.credentials/sheets.googleapis.com-marsen.me-spiritlog
 var SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 var TOKEN_DIR = process.cwd() + '/.credentials/';
-var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json';
+var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-marsen.me-spiritlog.json';
+var SECRET_PATH = TOKEN_DIR + '.secret/client_secret.json';
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
@@ -28,7 +29,7 @@ router.get('/', function(req, res, next) {
         var data = [];
         result.values.forEach(function(e) {
             data.push({ 
-              timestamp:e,
+              timestamp:new Date(e[0]),
               date:new Date(e[0]).getHours()*3600+new Date(e[0]).getMinutes()*60+new Date(e[0]).getSeconds(),
               close:e[1]
             });
@@ -99,7 +100,7 @@ function getSpiritLog(auth) {
 
 function getCredentials(){
   try {
-    var content = fs.readFileSync('client_secret.json');
+    var content = fs.readFileSync(SECRET_PATH);
     //console.log(content);
     var credentials = JSON.parse(content);
     return credentials;

@@ -28,6 +28,9 @@
     <h1><%= title %></h1>   
   </body>
   <script>
+// 1. timeParse
+var parseTime = d3.timeParse("%d-%b-%y");
+      
 // 2. Use the margin convention practice 
 var margin = {top: 50, right: 50, bottom: 50, left: 50}
   , width = 960 // Use the window's width 
@@ -68,6 +71,13 @@ svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")    
     .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
+  // text label for the x axis
+svg.append("text")             
+    .attr("transform",
+        "translate(" + (width/2) + " ," + 
+                        (height + margin.top + 20) + ")")
+    .style("text-anchor", "middle")
+    .text("Date");    
 
 // 4. Call the y axis in a group tag
 svg.append("g")
