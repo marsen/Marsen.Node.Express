@@ -28,12 +28,13 @@ router.get('/', function(req, res, next) {
         var data = [];
         result.values.forEach(function(e) {
             data.push({ 
-              date:new Date(e[0]),
+              timestamp:e,
+              date:new Date(e[0]).getHours()*3600+new Date(e[0]).getMinutes()*60+new Date(e[0]).getSeconds(),
               close:e[1]
             });
         }, this);        
         //console.log('data:'+data);
-        res.render('spiritlog/index', { title: 'KATA!!!!', data:JSON.stringify(data) });
+        res.render('spiritlog/index', { title: 'Spirit Log!!!!', data:JSON.stringify(data) });
       });
     }else{
         var authUrl = oauth2Client.generateAuthUrl({
@@ -83,7 +84,7 @@ function getSpiritLog(auth) {
     sheets.spreadsheets.values.get({
       auth: auth,
       spreadsheetId: '1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ',
-      range: '\'Class Data\'!A2:52',
+      range: '\'Class Data\'!A2:100',
     }, (err, response)=>{
       if (err) {
         console.log('The API returned an error: ' + err);
