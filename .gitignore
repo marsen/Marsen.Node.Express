@@ -41,3 +41,7 @@ reports
 
 #selenium-debug log
 .log
+
+#google api .credentials
+.credentials/*.json
+client_secret.json*
