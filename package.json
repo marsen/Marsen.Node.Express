@@ -10,10 +10,10 @@
   ],
   "author": {
     "name": "Marsen Lin",
-    "email": "marsen@@boun.cr",
-    "url": "http://www.openshift.com/"
+    "email": "marsen@boun.cr",
+    "url": "https://marsen.me/"
   },
-  "homepage": "http://www.openshift.com/",
+  "homepage": "https://marsen.me/",
   "repository": {
     "type": "git",
     "url": "https://github.com/openshift/origin-server"
@@ -43,7 +43,7 @@
     "morgan": "^1.7.0",    
     "passport": "^0.2.2",
     "serve-favicon": "~2.3.0",
-    "typescript": "^2.0.3"
+    "typescript": "^2.4"
   },
   "devDependencies": {
     "chromedriver": "^2.21.2",
