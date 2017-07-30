@@ -32,7 +32,11 @@
   },
   "dependencies": {
     "@types/bootstrap": "^3.3.32",
+    "@types/cookie-parser": "^1.4.0",
+    "@types/express": "^4.0.36",
+    "@types/httperr": "^1.0.29",
     "@types/jqueryui": "^1.11.31",
+    "@types/morgan": "^1.7.32",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "debug": "^2.2.0",

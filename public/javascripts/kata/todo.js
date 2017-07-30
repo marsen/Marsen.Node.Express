@@ -1,11 +1,16 @@
 /// <reference path="../../../node_modules/@types/jquery/index.d.ts"/>
 /// <reference path="../../../node_modules/@types/bootstrap/index.d.ts"/>
 /// <reference path="../../../node_modules/@types/jqueryui/index.d.ts"/>
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var BaseService = (function () {
     function BaseService(type) {
         this.type = type;
@@ -33,8 +38,7 @@ var todoStatus;
 var TodoService = (function (_super) {
     __extends(TodoService, _super);
     function TodoService() {
-        _super.call(this, "todoItem");
-        this.Init();
+        return _super.call(this, "todoItem") || this;
     }
     TodoService.prototype.Render = function () {
         var doneHtml = '';
@@ -89,6 +93,7 @@ var TodoService = (function (_super) {
                     _this.Render();
                 }
                 else {
+                    // some validation
                 }
             }
         });
@@ -117,3 +122,4 @@ var TodoService = (function (_super) {
     return TodoService;
 }(BaseService));
 var todoService = new TodoService();
+todoService.Init();
