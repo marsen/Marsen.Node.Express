@@ -28,7 +28,7 @@
     "test": "node_modules/.bin/nightwatch",
     "e2e": "npm-run-all --parallel start test",
     "run": "node ./bin/www",
-    "ts": "gulp"
+    "ts": "gulp app"
   },
   "dependencies": {
     "@types/bootstrap": "^3.3.32",
@@ -38,9 +38,11 @@
     "debug": "^2.2.0",
     "ejs": "~2.4.1",
     "express": "^4.13.4",
-    "googleapis": "^19.0.0",
     "google-auth-library": "^0.10.0",
-    "morgan": "^1.7.0",    
+    "googleapis": "^19.0.0",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.1",
+    "morgan": "^1.7.0",
     "passport": "^0.2.2",
     "serve-favicon": "~2.3.0",
     "typescript": "^2.4"
