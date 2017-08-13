@@ -1,7 +1,6 @@
-var express = require('express');
-var bodyParser = require('body-parser');
+import * as express from 'express';
 var router = express.Router();
-router.get('/', function (req, res, next) {
+router.get('/', (req, res, next) => {
     var phares = ['Life without a friend is death.',
         'Kings go mad， and the people suffer for it.',
         'Action speak louder than words.',
@@ -15,11 +14,12 @@ router.get('/', function (req, res, next) {
     console.log("random number is : " + randex);
     res.send(phares[randex]);
 });
-router.param(['id', 'url'], function (req, res, next, value) {
-    console.log('CALLED ONLY ONCE with', value);
-    next();
-});
-router.post('/note', function (req, res, next) {
+// http://expressjs.com/en/api.html
+// router.param(['id', 'url'], (req:core.Request, res:core.Response, next:core.NextFunction,value:any)=> {
+//   console.log('CALLED ONLY ONCE with', value);
+//   next();
+// });
+router.post('/note', (req, res, next) => {
     res.send("/note " + req.body.url);
 });
 module.exports = router;

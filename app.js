@@ -1,10 +1,8 @@
-"use strict";
-exports.__esModule = true;
-var express = require("express");
-var path = require("path");
-var logger = require("morgan");
-var cookieParser = require("cookie-parser");
-var bodyParser = require("body-parser");
+import * as express from 'express';
+import * as path from 'path';
+import * as logger from 'morgan';
+import * as cookieParser from 'cookie-parser';
+import * as bodyParser from 'body-parser';
 var routes = require('./routes/index');
 var kata = require('./routes/kata');
 var spiritlog = require('./routes/spiritlog');
@@ -26,7 +24,7 @@ app.use('/about', about);
 app.use('/api', api);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    var err;
+    let err;
     err = new Error('Not Found');
     err.status = 404;
     next(err);

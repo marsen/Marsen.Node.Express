@@ -1,4 +1,5 @@
-var express = require('express');
+import * as core from 'express-serve-static-core';
+import * as express from 'express';
 var router = express.Router();
 var fs = require('fs');
 var readline = require('readline');
@@ -14,7 +15,7 @@ var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-marsen.me-spiritlog.json';
 var SECRET_PATH = TOKEN_DIR + '.secret/client_secret.json';
 
 /* GET index page. */
-router.get('/', function(req, res, next) {
+router.get('/',  (req:core.Request, res:core.Response, next:core.NextFunction)=> {
   try {
     var credentials = getCredentials();
     var clientSecret = credentials.web.client_secret;
@@ -25,9 +26,9 @@ router.get('/', function(req, res, next) {
     if(hasAuth()){
       oauth2Client.credentials = getToken();
       getSpiritLog(oauth2Client)
-      .then((result)=>{      
-        var data = [];
-        result.values.forEach(function(e) {
+      .then((result:any)=>{      
+        let data:any[];
+        result.values.forEach((e)=> {
             data.push({ 
               timestamp:new Date(e[0]),
               date:new Date(e[0]).getHours()*3600+new Date(e[0]).getMinutes()*60+new Date(e[0]).getSeconds(),
@@ -57,7 +58,7 @@ router.get('/', function(req, res, next) {
   }
 });
 
-router.get('/auth', function(req, res, next) {  
+router.get('/auth', (req:core.Request, res:core.Response, next:core.NextFunction)=> {  
   var code = req.query.code;
   console.log('Auth code:'+code);
   var credentials = getCredentials();
@@ -66,7 +67,7 @@ router.get('/auth', function(req, res, next) {
   var redirectUrl = credentials.web.redirect_uris[0];
   var auth = new googleAuth();
   var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);  
-  oauth2Client.getToken(code, function(err, token) {
+  oauth2Client.getToken(code, function(err:any, token:String) {
     if (err) {
       console.log('Error while trying to retrieve access token', err);
       return;
@@ -134,7 +135,7 @@ function hasAuth(){
  *
  * @param {Object} token The token to store to disk.
  */
-function storeToken(token) {
+function storeToken(token:String) {
   try {
     fs.mkdirSync(TOKEN_DIR);
   } catch (err) {
@@ -145,35 +146,5 @@ function storeToken(token) {
   fs.writeFile(TOKEN_PATH, JSON.stringify(token));
   console.log('Token stored to ' + TOKEN_PATH);
 }
-/** functions **/
-/**
- * Print the names and majors of students in a sample spreadsheet:
- * https://docs.google.com/spreadsheets/d/1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ/edit
- */
-function listMajors(auth) {
-  var sheets = google.sheets('v4');
-  sheets.spreadsheets.values.get({
-    auth: auth,
-    spreadsheetId: '1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ',
-    range: '\'Class Data\'!A2:52',
-  }, function(err, response) {
-    if (err) {
-      console.log('The API returned an error: ' + err);
-      return;
-    }
-    var rows = response.values;
-    if (rows.length == 0) {
-      console.log('No data found.');
-    } else {
-      console.log('Name, Major:');
-      for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        // Print columns A and E, which correspond to indices 0 and 4.
-        console.log('%s, %s', row[0], row[1]);
-      }
-    }
-  });
-}
-/**/
 
 module.exports = router;
