@@ -1,1 +1,1 @@
-web: node --debug=5858 www
+web: ./bin/www npm start
