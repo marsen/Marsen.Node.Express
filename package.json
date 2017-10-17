@@ -60,7 +60,6 @@
     "nightwatch": "^0.9.5",
     "nightwatch-cucumber": "^4.1.0",
     "npm-run-all": "^2.2.2",
-    "phantomjs-prebuilt": "^2.1.7",
     "selenium-server": "^2.53.0"
   },
   "bundleDependencies": [],

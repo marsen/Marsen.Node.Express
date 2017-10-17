@@ -9,6 +9,7 @@ module.exports = function() {
 
     this.Given(/^: 畫面出現about頁$/, function(callback) {
         // Write code here that turns the phrase above into concrete actions
-        this.assert.title("About");
+        // this.assert.title("About");
+        this.expect.element('.name').text.to.equal('Marsen Lin');
     });
 }
