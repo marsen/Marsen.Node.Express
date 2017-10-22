@@ -1,4 +1,7 @@
-import * as express from 'express';
+"use strict";
+var _this = this;
+exports.__esModule = true;
+var express = require("express");
 var router = express.Router();
 var fs = require('fs');
 var readline = require('readline');
@@ -12,7 +15,7 @@ var TOKEN_DIR = process.cwd() + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-marsen.me-spiritlog.json';
 var SECRET_PATH = TOKEN_DIR + '.secret/client_secret.json';
 /* GET index page. */
-router.get('/', (req, res, next) => {
+router.get('/', function (req, res, next) {
     try {
         var credentials = getCredentials();
         var clientSecret = credentials.web.client_secret;
@@ -23,15 +26,15 @@ router.get('/', (req, res, next) => {
         if (hasAuth()) {
             oauth2Client.credentials = getToken();
             getSpiritLog(oauth2Client)
-                .then((result) => {
-                let data;
-                result.values.forEach((e) => {
+                .then(function (result) {
+                var data;
+                result.values.forEach(function (e) {
                     data.push({
                         timestamp: new Date(e[0]),
                         date: new Date(e[0]).getHours() * 3600 + new Date(e[0]).getMinutes() * 60 + new Date(e[0]).getSeconds(),
                         close: e[1]
                     });
-                }, this);
+                }, _this);
                 //console.log('data:'+data);
                 res.render('spiritlog/index', { title: 'Spirit Log!!!!', data: JSON.stringify(data) });
             });
@@ -54,7 +57,7 @@ router.get('/', (req, res, next) => {
         res.render('spiritlog/index', { title: 'ERROR!!!' });
     }
 });
-router.get('/auth', (req, res, next) => {
+router.get('/auth', function (req, res, next) {
     var code = req.query.code;
     console.log('Auth code:' + code);
     var credentials = getCredentials();
@@ -77,12 +80,12 @@ router.get('/auth', (req, res, next) => {
 function getSpiritLog(auth) {
     //console.log(auth);
     var sheets = google.sheets('v4');
-    var promise = new Promise((resolve, reject) => {
+    var promise = new Promise(function (resolve, reject) {
         sheets.spreadsheets.values.get({
             auth: auth,
             spreadsheetId: '1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ',
-            range: '\'Class Data\'!A2:100',
-        }, (err, response) => {
+            range: '\'Class Data\'!A2:100'
+        }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);
                 return;

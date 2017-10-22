@@ -1,6 +1,8 @@
-import * as express from 'express';
+"use strict";
+exports.__esModule = true;
+var express = require("express");
 var router = express.Router();
-router.get('/', (req, res, next) => {
+router.get('/', function (req, res, next) {
     var phares = ['Life without a friend is death.',
         'Kings go mad， and the people suffer for it.',
         'Action speak louder than words.',
@@ -19,7 +21,7 @@ router.get('/', (req, res, next) => {
 //   console.log('CALLED ONLY ONCE with', value);
 //   next();
 // });
-router.post('/note', (req, res, next) => {
+router.post('/note', function (req, res, next) {
     res.send("/note " + req.body.url);
 });
 module.exports = router;
