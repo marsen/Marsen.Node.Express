@@ -1,6 +1,6 @@
 //nightwatch.conf.js
 var seleniumServer = require('selenium-server')
-var phantomjs = require('phantomjs-prebuilt')
+//var phantomjs = require('phantomjs-prebuilt')
 var chromedriver = require('chromedriver')
 var nightwatchCucumber = require('nightwatch-cucumber')
 
