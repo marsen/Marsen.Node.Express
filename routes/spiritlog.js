@@ -1,4 +1,7 @@
-var express = require('express');
+"use strict";
+var _this = this;
+exports.__esModule = true;
+var express = require("express");
 var router = express.Router();
 var fs = require('fs');
 var readline = require('readline');
@@ -13,7 +16,6 @@ var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-marsen.me-spiritlog.json';
 var SECRET_PATH = TOKEN_DIR + '.secret/client_secret.json';
 /* GET index page. */
 router.get('/', function (req, res, next) {
-    var _this = this;
     try {
         var credentials = getCredentials();
         var clientSecret = credentials.web.client_secret;
@@ -25,7 +27,7 @@ router.get('/', function (req, res, next) {
             oauth2Client.credentials = getToken();
             getSpiritLog(oauth2Client)
                 .then(function (result) {
-                var data = [];
+                var data;
                 result.values.forEach(function (e) {
                     data.push({
                         timestamp: new Date(e[0]),
@@ -142,35 +144,4 @@ function storeToken(token) {
     fs.writeFile(TOKEN_PATH, JSON.stringify(token));
     console.log('Token stored to ' + TOKEN_PATH);
 }
-/** functions **/
-/**
- * Print the names and majors of students in a sample spreadsheet:
- * https://docs.google.com/spreadsheets/d/1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ/edit
- */
-function listMajors(auth) {
-    var sheets = google.sheets('v4');
-    sheets.spreadsheets.values.get({
-        auth: auth,
-        spreadsheetId: '1i3b7sd1vFKGVtkyDnWZomBwbmuWIABGxreZv2anVzmQ',
-        range: '\'Class Data\'!A2:52'
-    }, function (err, response) {
-        if (err) {
-            console.log('The API returned an error: ' + err);
-            return;
-        }
-        var rows = response.values;
-        if (rows.length == 0) {
-            console.log('No data found.');
-        }
-        else {
-            console.log('Name, Major:');
-            for (var i = 0; i < rows.length; i++) {
-                var row = rows[i];
-                // Print columns A and E, which correspond to indices 0 and 4.
-                console.log('%s, %s', row[0], row[1]);
-            }
-        }
-    });
-}
-/**/
 module.exports = router;
