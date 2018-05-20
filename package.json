@@ -55,7 +55,7 @@
     "chromedriver": "^2.21.2",
     "cucumber": "^1.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-typescript": "^3.2.1",
+    "gulp-typescript": "4.0.2",
     "http-server": "^0.9.0",
     "nightwatch": "^0.9.5",
     "nightwatch-cucumber": "^4.1.0",
