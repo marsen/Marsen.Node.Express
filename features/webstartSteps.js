@@ -3,7 +3,7 @@ module.exports = function() {
 
     this.Given(/^: 瀏覽about頁時$/, function(callback) {
         // Write code here that turns the phrase above into concrete actions
-        this.url("http://localhost:3000/about")
+        this.url("http://localhost:8080/about")
             .waitForElementVisible('body', 1000);
     });
 
