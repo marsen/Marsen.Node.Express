@@ -1,4 +1,6 @@
 # Marsen.Node.Express
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/marsen/Marsen.Node.Express.svg)](https://greenkeeper.io/)
 Learning Expressjs 學習筆記
 
 ## 環境
